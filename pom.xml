@@ -5,13 +5,13 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dio.petmachine</groupId>
+    <groupId>com.dio.maquinapet</groupId>
     <artifactId>pet-machine-simulator</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Pet Machine Simulator</name>
-    <description>Simulador de Máquina Automatizada de Banho Pet - Projeto Prático de POO e Encapsulamento</description>
+    <name>Simulador Maquina de Banho Pet</name>
+    <description>Simulador de Maquina Automatizada de Banho Pet - Projeto Pratico de POO e Encapsulamento</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,7 +22,7 @@
     </properties>
 
     <dependencies>
-        <!-- Testes Unitários com JUnit 5 -->
+        <!-- Testes Unitarios com JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -55,20 +55,20 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Surefire Plugin para execução de testes -->
+            <!-- Maven Surefire Plugin para execucao de testes -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
             </plugin>
 
-            <!-- Maven Exec Plugin para executar aplicação facilmente via terminal -->
+            <!-- Maven Exec Plugin para executar aplicacao facilmente via terminal -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <mainClass>com.dio.petmachine.App</mainClass>
+                    <mainClass>com.dio.maquinapet.Principal</mainClass>
                 </configuration>
             </plugin>
         </plugins>
