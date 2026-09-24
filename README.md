@@ -1,41 +1,41 @@
-# 🐾 Simulador de Máquina de Banho em Pets (Pet Machine)
+# 🐾 Simulador de Máquina de Banho em Pets (Pet Machine Simulator)
 
-[![Java](https://img.shields.io/badge/Java-21%20LTS-orange?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-[![Maven](https://img.shields.io/badge/Apache%20Maven-3.9+-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
+[![Java 21](https://img.shields.io/badge/Java-21%20LTS-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/)
+[![Apache Maven](https://img.shields.io/badge/Apache%20Maven-3.9+-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
 [![JUnit 5](https://img.shields.io/badge/JUnit-5.10.2-25A162?style=for-the-badge&logo=junit5&logoColor=white)](https://junit.org/junit5/)
-[![POO](https://img.shields.io/badge/Paradigma-POO%20%26%20Encapsulamento-blue?style=for-the-badge)](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_orientada_a_objetos)
+[![POO](https://img.shields.io/badge/Paradigma-POO%20%26%20Encapsulamento-007ACC?style=for-the-badge&logo=java&logoColor=white)](https://pt.wikipedia.org/wiki/Programa%C3%A7%C3%A3o_orientada_a_objetos)
+[![Status](https://img.shields.io/badge/Status-100%25%20CONCLU%C3%8DDO-brightgreen?style=for-the-badge)](docs/code-review.md)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-> **Projeto prático desenvolvido para consolidar os pilares da Programação Orientada a Objetos (POO), com ênfase em Criação de Classes, Encapsulamento Estrito, Modelagem Rica de Domínio, Exceções Customizadas e Testes Unitários em Java 21.**
+> **Solução prática de Engenharia de Software em Java 21 LTS demonstrando Encapsulamento Estrito, Modelagem Não-Anêmica (*Rich Domain Model*), Princípio Fail-Fast com Exceções Semânticas de Domínio e 100% de cobertura com 17 Testes Unitários via JUnit 5.**
 
 ---
 
 ## 📌 Sumário
-- [Visão Geral](#-visão-geral)
-- [Diagrama de Classes (Mermaid)](#-diagrama-de-classes)
-- [Pilares de POO & Engenharia de Software](#-pilares-de-poo--engenharia-de-software)
+- [Visão Geral & Caso de Uso](#-visão-geral--caso-de-uso)
+- [Diagrama de Classes (Mermaid)](#-diagrama-de-classes-mermaid)
+- [Análise sob os Três Pilares da Engenharia Corporativa](#-análise-sob-os-três-pilares-da-engenharia-corporativa)
 - [Regras de Negócio e Estados da Máquina](#-regras-de-negócio-e-estados-da-máquina)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Testes Automatizados (JUnit 5)](#-testes-automatizados-junit-5)
-- [Como Executar](#-como-executar)
-- [Guia para Entrevistas Técnicas](#-guia-para-entrevistas-técnicas-java)
+- [Guia Prático de Execução & Testes no Terminal](#-guia-prático-de-execução--testes-no-terminal)
+- [Guia de Treinamento Técnico para Entrevistas](#-guia-de-treinamento-técnico-para-entrevistas)
+- [Auditoria & Code Review](#-auditoria--code-review)
 - [Autor](#-autor)
 
 ---
 
-## 📖 Visão Geral
+## 📖 Visão Geral & Caso de Uso
 
-O projeto simula uma **máquina automatizada de dar banho em cachorros/pets**, inspirada nos desafios da trilha Java da **DIO (Digital Innovation One)** com foco em **Criação de Classes e Encapsulamento**.
+O projeto simula uma **máquina automatizada corporativa de higienização de animais de estimação (Pet Machine)**. O foco central não é apenas fazer a lógica funcionar, mas aplicar **rigor arquitetural de Programação Orientada a Objetos (POO)**:
 
-Toda a arquitetura foi estruturada em **Português**, tornando o entendimento do domínio direto e claro, aplicando práticas recomendadas de mercado:
-1. **Encapsulamento Rígido:** Variáveis como `agua`, `shampoo`, `limpa` e `pet` são estritamente privadas (`private`).
-2. **Modelo Não-Anêmico (*Rich Domain Model*):** A classe `MaquinaBanhoPet` detém as regras de negócio e validações, garantindo que o objeto nunca entre em estado inválido.
-3. **Exceções de Domínio Expressivas:** Hierarquia semântica de exceções (`MaquinaPetException`, `MaquinaSujaException`, `RecursosInsuficientesException`, etc.) no lugar de retornos mágicos ou impressões no console.
-4. **Qualidade Assegurada por Testes:** 17 testes unitários com **JUnit 5** cobrindo fluxos de sucesso e casos de borda (*edge cases*).
+1. 🔒 **Encapsulamento Rígido:** Estado interno (`agua`, `shampoo`, `limpa`, `pet`) 100% privado. Nenhum recurso pode ser violado externamente.
+2. 🧠 **Modelo Rico de Domínio (*Rich Domain Model*):** A classe `MaquinaBanhoPet` é soberana sobre suas regras operacionais. Ela não é um repositório anêmico de dados (Getters/Setters soltos).
+3. ⚡ **Princípio Fail-Fast & Exceções Semânticas:** Bloqueio imediato de estados inconsistentes através de uma hierarquia dedicada de exceções de negócio (`MaquinaSujaException`, `MaquinaOcupadaException`, etc.).
+4. 🧪 **Garantia de Qualidade com JUnit 5:** 17 testes unitários cobrindo fluxos felizes e casos de borda (*edge cases*).
 
 ---
 
-## 📊 Diagrama de Classes
+## 📊 Diagrama de Classes (Mermaid)
 
 ```mermaid
 classDiagram
@@ -91,143 +91,140 @@ classDiagram
     MaquinaPetException <|-- MaquinaVaziaException
     MaquinaPetException <|-- RecursosInsuficientesException
 
-    MaquinaBanhoPet "1" o-- "0..1" Pet : abriga
+    MaquinaBanhoPet "1" o-- "0..1" Pet : abriga temporariamente
 ```
+
+#### 💡 O QUE ESTE DIAGRAMA SIGNIFICA NA PRÁTICA NO MUNDO REAL?
+> 1. **Agregação Segura:** A máquina abriga o `Pet` temporariamente (`0..1`). O animal entra sujo, passa pelo processo de banho e é retirado limpo. Se a máquina for destruída, o pet continua existindo no mundo real.
+> 2. **Proteção Contra Contaminação:** A máquina guarda seu próprio estado de higiene (`limpa`). Uma vez executado o banho, a máquina fica marcada como suja (`limpa = false`), impedindo que outro animal entre até que a higienização da própria cabine ocorra.
+> 3. **Hierarquia de Exceções Semânticas:** Qualquer tentativa de violar a física do sistema (ex: colocar pet em máquina já ocupada ou sem água) dispara uma exceção especializada herdada de `MaquinaPetException`, blindando o sistema contra corrupção de dados.
 
 ---
 
-## 🏛️ Pilares de POO & Engenharia de Software
+## 🏛️ Análise sob os Três Pilares da Engenharia Corporativa
 
-### 1. Encapsulamento
-- Todos os atributos da máquina são privados.
-- O abastecimento é controlado matematicamente (`Math.min`), não permitindo que a água ultrapasse os **30 litros** ou que o shampoo ultrapasse os **10 litros**, e bloqueando números negativos.
-- Não existem *setters* abertos para os recursos. O estado muda exclusivamente via métodos com semântica de negócio: `darBanho()`, `abastecerAgua()`, `limparMaquina()`.
+### 1. Pilar de Arquitetura & POO
+- **Encapsulamento Estrito:** Atributos de nível de tanque (`agua`, `shampoo`) são estritamente privados. O abastecimento utiliza controle matemático via `Math.min()`, impedindo transbordamentos além de 30L de água ou 10L de shampoo, e rejeitando valores negativos.
+- **Separação de Responsabilidades (SRP):**
+  - `Pet`: Responsável unicamente pela entidade do animal e seu estado de higiene.
+  - `MaquinaBanhoPet`: Central de regras operacionais, travas e gestão de insumos.
+  - `Principal`: Ponto de entrada CLI (console) com tratamento desacoplado de erros.
 
-### 2. Princípio Fail-Fast com Exceções Especializadas
-- `MaquinaSujaException`: Bloqueia a inserção de um novo animal caso a máquina ainda não tenha sido limpa após o banho anterior (previne contaminação cruzada).
-- `MaquinaOcupadaException`: Impede colocar um pet quando a máquina já está ocupada ou tentar higienizar a máquina com o pet dentro.
-- `MaquinaVaziaException`: Bloqueia o início do banho ou a tentativa de retirada se não houver animal na máquina.
-- `RecursosInsuficientesException`: Valida se há insumos suficientes antes de iniciar qualquer operação.
+### 2. Pilar de Escalabilidade & Robustez
+- **Princípio Fail-Fast:** Validação instantânea de pré-condições. Se faltar insumo ou se a máquina estiver suja, o fluxo é interrompido imediatamente no ponto exato da violação.
+- **Modelo Não-Anêmico (*Rich Domain Model*):** Eliminação de *setters* indiscriminados. A transição de estado só ocorre por métodos de negócio: `darBanho()`, `limparMaquina()`, `abastecerAgua()`.
 
-### 3. Separação de Responsabilidades (SRP)
-- **`Pet`**: Representa apenas a entidade do animal e seu estado de higiene.
-- **`MaquinaBanhoPet`**: Gerencia todo o ciclo operacional, estoques e travas de segurança.
-- **`Principal`**: Classe executável responsável pelo menu interativo de terminal (`Scanner`) e tratamento amigável de exceções.
+### 3. Pilar de Dimensões Técnicas & Qualidade
+- **Cobertura Massiva:** 17 testes unitários estruturados com a anotação `@Nested` do JUnit 5, separando o ciclo de testes por contexto (Abastecimento, Entrada/Saída, Execução de Banho, Higienização).
+- **Zero Dependências Pesadas:** Construído em Java 21 puro + Maven + JUnit 5, demonstrando domínio absoluto da linguagem sem necessidade de frameworks pesados para validar lógica de domínio.
+
+#### 💡 O que isso significa na prática no mundo real?
+> Em um sistema comercial de Pet Shop automatizado, essa modelagem impede acidentes reais: evita que a máquina jogue água fria sem shampoo, impede afogamento por transbordamento de tanque e blinda o pet shop contra processos judiciais ao impedir que um animal use a cabine suja de outro animal com carrapatos ou infecções.
 
 ---
 
 ## ⚙️ Regras de Negócio e Estados da Máquina
 
-| Ação | Pré-requisitos | Consumo de Insumos | Mudança de Estado |
+| Ação de Negócio | Pré-requisitos Obrigatórios | Consumo de Insumos | Estado Resultante |
 | :--- | :--- | :--- | :--- |
-| **Colocar Pet (`colocarPet`)** | Máquina vazia (`pet == null`) E higienizada (`limpa == true`) | Nenhum | Pet é acomodado na máquina |
-| **Dar Banho (`darBanho`)** | Conter pet + Água $\ge 10\text{L}$ + Shampoo $\ge 2\text{L}$ | $-10\text{L}$ de Água<br>$-2\text{L}$ de Shampoo | Pet fica limpo (`limpo = true`); Máquina fica suja (`limpa = false`) |
-| **Retirar Pet (`retirarPet`)** | Conter pet (`pet != null`) | Nenhum | Animal é retirado e desvinculado da máquina |
-| **Abastecer Água (`abastecerAgua`)** | Litros $> 0$ | $+N\text{L}$ (limite em $30\text{L}$) | Eleva o nível de água sem transbordar |
-| **Abastecer Shampoo (`abastecerShampoo`)** | Litros $> 0$ | $+N\text{L}$ (limite em $10\text{L}$) | Eleva o nível de shampoo sem transbordar |
-| **Higienizar Máquina (`limparMaquina`)** | Máquina sem pet + Água $\ge 3\text{L}$ + Shampoo $\ge 1\text{L}$ | $-3\text{L}$ de Água<br>$-1\text{L}$ de Shampoo | Máquina volta a ficar higienizada (`limpa = true`) |
+| **Colocar Pet (`colocarPet`)** | Máquina vazia (`pet == null`) E higienizada (`limpa == true`) | Nenhum | Pet é acolhido na cabine |
+| **Dar Banho (`darBanho`)** | Conter pet + Água $\ge 10\text{L}$ + Shampoo $\ge 2\text{L}$ | $-10\text{L}$ de Água<br>$-2\text{L}$ de Shampoo | Pet limpo (`limpo = true`); Máquina suja (`limpa = false`) |
+| **Retirar Pet (`retirarPet`)** | Conter pet (`pet != null`) | Nenhum | Pet liberado; máquina fica desocupada |
+| **Abastecer Água (`abastecerAgua`)** | Volume $> 0\text{L}$ | $+N\text{L}$ (teto: $30\text{L}$) | Tanque de água abastecido sem transbordar |
+| **Abastecer Shampoo (`abastecerShampoo`)** | Volume $> 0\text{L}$ | $+N\text{L}$ (teto: $10\text{L}$) | Tanque de shampoo abastecido sem transbordar |
+| **Higienizar Máquina (`limparMaquina`)** | Cabine sem pet + Água $\ge 3\text{L}$ + Shampoo $\ge 1\text{L}$ | $-3\text{L}$ de Água<br>$-1\text{L}$ de Shampoo | Máquina higienizada e liberada (`limpa = true`) |
 
 ---
 
 ## 📂 Estrutura do Projeto
 
 ```text
-pet-machine-simulator/
-├── pom.xml                                      # Configuração Maven e dependências (Java 21, JUnit 5)
-├── README.md                                    # Documentação técnica e guia arquitetural
-├── .gitignore                                   # Filtro de arquivos para Git
-└── src/
-    ├── main/
-    │   └── java/
-    │       └── com/dio/maquinapet/
-    │           ├── Principal.java               # Classe executável (Menu interativo via Scanner)
-    │           ├── modelo/
-    │           │   └── Pet.java                 # Entidade de domínio Pet
-    │           ├── maquina/
-    │           │   └── MaquinaBanhoPet.java     # Encapsulamento central e regras de negócio
-    │           └── excecao/                     # Hierarquia de exceções de domínio
-    │               ├── MaquinaPetException.java
-    │               ├── MaquinaSujaException.java
-    │               ├── MaquinaOcupadaException.java
-    │               ├── MaquinaVaziaException.java
-    │               └── RecursosInsuficientesException.java
-    └── test/
-        └── java/
-            └── com/dio/maquinapet/
-                └── maquina/
-                    └── MaquinaBanhoPetTest.java # 17 Testes unitários com JUnit 5
+📁 pet-machine-simulator/
+ ├── ⚙️ pom.xml                                      # Governança Maven e dependências (Java 21 LTS, JUnit 5)
+ ├── 📄 README.md                                    # Manual técnico oficial e guia arquitetural
+ ├── 📜 .gitignore                                   # Higienização de artefatos Git
+ ├── 📁 docs/                                        # Documentação de Engenharia e Governança
+ │    ├── 📑 code-review.md                          # Relatório Oficial de Auditoria & Code Review
+ │    └── 🧠 manual-teorico-poo.md                   # Guia de Fundamentos de POO & Encapsulamento
+ └── 📁 src/
+      ├── 📁 main/java/com/dio/maquinapet/
+      │    ├── ☕ Principal.java                      # Ponto de ignição CLI (Console interativo)
+      │    ├── 📁 modelo/
+      │    │    └── 🐶 Pet.java                       # Entidade de domínio Pet
+      │    ├── 📁 maquina/
+      │    │    └── 🚿 MaquinaBanhoPet.java           # Núcleo de domínio, travas e encapsulamento
+      │    └── 📁 excecao/                            # Hierarquia Fail-Fast de exceções de domínio
+      │         ├── 🛡️ MaquinaPetException.java
+      │         ├── 🛡️ MaquinaSujaException.java
+      │         ├── 🛡️ MaquinaOcupadaException.java
+      │         ├── 🛡️ MaquinaVaziaException.java
+      │         └── 🛡️ RecursosInsuficientesException.java
+      └── 📁 test/java/com/dio/maquinapet/
+           └── 📁 maquina/
+                └── 🧪 MaquinaBanhoPetTest.java       # 17 Testes unitários com JUnit 5 (@Nested)
 ```
 
 ---
 
-## 🧪 Testes Automatizados (JUnit 5)
+## 🧪 Guia Prático de Execução & Testes no Terminal
 
-O projeto possui **17 testes unitários** organizados em blocos aninhados (`@Nested`) cobrindo 100% das regras e casos de borda:
+> **PADRÃO DE AUDITORIA:** Todo código corporativo deve ser 100% verificável via terminal em segundos.
 
+### 1. Executar a Suíte de Testes Automatizados (JUnit 5)
+Na raiz do projeto, execute:
+```bash
+mvn clean test
+```
+
+#### Como interpretar o log de engenharia:
 ```text
 [INFO] Running com.dio.maquinapet.maquina.MaquinaBanhoPetTest
+[INFO] Running com.dio.maquinapet.maquina.MaquinaBanhoPetTest$TestesHigienizacao
 [INFO] Tests run: 3, Failures: 0, Errors: 0 -- TestesHigienizacao
+[INFO] Running com.dio.maquinapet.maquina.MaquinaBanhoPetTest$TestesExecucaoBanho
 [INFO] Tests run: 4, Failures: 0, Errors: 0 -- TestesExecucaoBanho
+[INFO] Running com.dio.maquinapet.maquina.MaquinaBanhoPetTest$TestesEntradaSaidaPet
 [INFO] Tests run: 6, Failures: 0, Errors: 0 -- TestesEntradaSaidaPet
+[INFO] Running com.dio.maquinapet.maquina.MaquinaBanhoPetTest$TestesAbastecimento
 [INFO] Tests run: 4, Failures: 0, Errors: 0 -- TestesAbastecimento
 [INFO] 
 [INFO] Results:
 [INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0
+[INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
 ```
 
-Para rodar os testes:
-```bash
-mvn test
-```
-
----
-
-## 🚀 Como Executar
-
-### Pré-requisitos
-- **Java JDK 21+** instalado
-- **Apache Maven 3.9+** instalado (ou execute via `javac`)
-
-### Execução via Maven (Recomendado)
-Na pasta raiz do projeto:
+### 2. Iniciar a Aplicação Interativa no Console
 ```bash
 mvn clean compile exec:java
 ```
 
-### Execução Direta via Java Puro
-```bash
-# Compilar todas as classes
-javac -d bin -sourcepath src/main/java src/main/java/com/dio/maquinapet/Principal.java
+---
 
-# Executar a aplicação
-java -cp bin com.dio.maquinapet.Principal
-```
+## 🎤 Guia de Treinamento Técnico para Entrevistas
+
+### ❓ Pergunta 1: "O que é encapsulamento e como você o aplicou neste projeto?"
+> **Sua Resposta Técnica:**  
+> *"Encapsulamento é a prática de proteger o estado interno de um objeto contra modificações indevidas, expondo apenas operações com significado de negócio. No Simulador da Máquina de Pet, todas as variáveis de estado (`agua`, `shampoo`, `limpa`, `pet`) são estritamente privadas. Um consumidor da classe não pode alterar a água para valores negativos ou acima de 30L; ele precisa invocar `abastecerAgua()`, que valida os limites matemáticos e mantém a integridade do modelo."*
+
+### ❓ Pergunta 2: "Por que você criou exceções especializadas em vez de retornar booleanos ou códigos de status?"
+> **Sua Resposta Técnica:**  
+> *"Eu adotei o princípio Fail-Fast. Retornar `false` ou inteiros mágicos transfere para o chamador o ônus de lembrar de verificar o retorno, o que costuma causar erros silenciosos em produção. Lançando exceções semânticas como `MaquinaSujaException` ou `RecursosInsuficientesException`, o fluxo é interrompido no momento exato do erro com uma mensagem clara, permitindo que a camada de apresentação trate o erro de forma contextualizada."*
+
+### ❓ Pergunta 3: "Como foi estruturada a arquitetura de testes unitários?"
+> **Sua Resposta Técnica:**  
+> *"Eu estruturei 17 testes unitários com JUnit 5 utilizando a anotação `@Nested`. Isso permitiu separar os testes por contextos de negócio coesos: abastecimento, entrada e saída de animais, ciclo de banho e higienização da cabine. Cobri tanto os caminhos felizes quanto casos extremos de borda (edge cases), como transbordamento de tanques e tentativas de banho com insumos zerados."*
 
 ---
 
-## 💼 Guia para Entrevistas Técnicas (Java)
+## 📑 Auditoria & Code Review
 
-Respostas para perguntas frequentes de recrutadores e líderes técnicos sobre este projeto:
-
-### 1. "O que é encapsulamento e como você o aplicou?"
-> *"Encapsulamento é a prática de esconder os detalhes internos de implementação e o estado de um objeto, expondo apenas operações seguras. No projeto da Máquina de Banho Pet, todas as variáveis de estado (`agua`, `shampoo`, `limpa`, `pet`) são estritamente privadas. Um usuário da classe não pode alterar a água diretamente para um número negativo ou acima de 30L; ele precisa chamar o método `abastecerAgua()`, que valida a entrada e calcula o espaço restante de forma controlada."*
-
-### 2. "Por que você criou exceções customizadas em vez de retornar boolean ou códigos de erro?"
-> *"Utilizar exceções customizadas segue o princípio Fail-Fast. Quando uma regra de negócio é violada (ex: tentar colocar um pet na máquina suja com `MaquinaSujaException`), o fluxo é interrompido no momento exato da violação com uma mensagem semântica clara. Isso evita que o erro se propague silenciosamente e desacopla a regra de negócio da interface de usuário (console/CLI)."*
-
-### 3. "Como você garantiu a qualidade do código entregue?"
-> *"Construí uma suíte de 17 testes unitários com JUnit 5 cobrindo os caminhos felizes e os casos extremos (edge cases), como esgotamento de insumos, abastecimento além da capacidade máxima e bloqueio de contaminação cruzada entre animais."*
+Consulte o relatório oficial de conformidade técnica em:  
+👉 [docs/code-review.md](docs/code-review.md)
 
 ---
 
-## 👨‍💻 Autor
+## 👤 Autor
 
-Desenvolvido por **Rudson Lima**  
-Desenvolvedor Backend Java & Inteligência Artificial.
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rudsonamerico/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rngolima)
-
----
-*Projeto educacional baseado nas trilhas da Digital Innovation One (DIO) em parceria com Itaú & Santander.*
+Desenvolvido por **Rudson Americo** ([GitHub](https://github.com/rngolima) • [LinkedIn](https://www.linkedin.com/in/rudsonamerico/)).
